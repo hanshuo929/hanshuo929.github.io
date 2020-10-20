@@ -142,6 +142,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Fail-to-install-package-for-Yilia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/21/Fail-to-install-package-for-Yilia/">Fail to install package for Yilia</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/21/Fail-to-install-package-for-Yilia/" class="archive-article-date">
+  	<time datetime="2020-10-20T17:17:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Why-we-do-this"><a href="#Why-we-do-this" class="headerlink" title="Why we do this"></a>Why we do this</h2><p><strong>After changing the theme to Yilia ,I found that the link to ALL ARTICLES(所有文章) is fail to display like this</strong><br><img src="https://s1.ax1x.com/2020/10/21/B9KVrn.png" alt="B9KVrn.png"></p>
+<p>In the prompt,the author of Yilia has prompted that I can solve this problem by install a package called <strong>hexo-generator-json-content</strong><br>But the way to install is not that easy<br>As the author says, I have checked the version of NODEJS ,and added the script to the _config.yml<br><img src="https://s1.ax1x.com/2020/10/21/B9Ki8g.png" alt="B9Ki8g.png"><br>Everything runs well until the execute of command </p>
+<p><code>npm i hexo-generator-json-content --save</code></p>
+<p><img src="https://s1.ax1x.com/2020/10/21/B9KEKs.png" alt="B9KEKs.png"></p>
+<h2 id="How-to-solve-it"><a href="#How-to-solve-it" class="headerlink" title="How to solve it"></a>How to solve it</h2><p>In some forums ,I found that some guys suggest me not using npm to install package but cnpm<br>So I took a try to install cnpm</p>
+<p><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<p>Though it failed to install cnpm ,I still found another way to install it </p>
+<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
+<p><img src="https://s1.ax1x.com/2020/10/21/B9KF2Q.png" alt="B9KF2Q.png"></p>
+<p>FINALLY I use the formal command to install package hexo-generator-json-content successfully </p>
+<p><img src="https://s1.ax1x.com/2020/10/21/B9KZbq.png" alt="B9KZbq.png"></p>
+<p><img src="https://s1.ax1x.com/2020/10/21/B9KmV0.png" alt="B9KmV0.png"></p>
+<h2 id="SUMMARY"><a href="#SUMMARY" class="headerlink" title="SUMMARY"></a>SUMMARY</h2><ol>
+<li><p><code>npm config set registry https://registry.npm.taobao.org</code></p>
+</li>
+<li><p><code>npm i hexo-generator-json-content --save</code></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/21/Fail-to-install-package-for-Yilia/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-interview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
