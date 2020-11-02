@@ -232,7 +232,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/Tips-For-C/">Tips For C</a>
+      <a class="article-title" href="/2020/11/02/Tips-For-C/">1.1 C foundation - Memory</a>
     </h1>
   
 
@@ -249,7 +249,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-1字节等于8bit"><a href="#1-1字节等于8bit" class="headerlink" title="1. 1字节等于8bit"></a>1. 1字节等于8bit</h2><h2 id="2-以32位机为例CPU是以4字节为单位对数据进行处理的"><a href="#2-以32位机为例CPU是以4字节为单位对数据进行处理的" class="headerlink" title="2. 以32位机为例CPU是以4字节为单位对数据进行处理的"></a>2. 以32位机为例CPU是以<strong>4字节</strong>为单位对数据进行处理的</h2><p>字节对齐<br>目的： 提升效率，节省空间</p>
+        <h2 id="1-1字节等于8bit"><a href="#1-1字节等于8bit" class="headerlink" title="1. 1字节等于8bit"></a>1. 1字节等于8bit</h2><p><strong>而内存编址是以字节为单位的</strong></p>
+<h2 id="2-以32位机为例，CPU是以4字节为单位对数据进行处理的"><a href="#2-以32位机为例，CPU是以4字节为单位对数据进行处理的" class="headerlink" title="2. 以32位机为例，CPU是以4字节为单位对数据进行处理的"></a>2. 以32位机为例，CPU是以<strong>4字节</strong>为单位对数据进行处理的</h2><p>字节对齐<br>目的： 提升效率，节省空间<br>内存的对齐访问不是<strong>逻辑</strong>的问题，是<strong>硬件</strong>的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。<br>对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率不高。</p>
         
       
 
