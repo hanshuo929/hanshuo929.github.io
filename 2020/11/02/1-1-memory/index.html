@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Ham</title>
+  <title>1.1 C foundation - Memory | Ham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ham">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="1. 1字节等于8bit而内存编址是以字节为单位的 2. 以32位机为例，CPU是以4字节为单位对数据进行处理的字节对齐目的： 提升效率，节省空间内存的对齐访问不是逻辑的问题，是硬件的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.1 C foundation - Memory">
+<meta property="og:url" content="http://yoursite.com/2020/11/02/1-1-memory/index.html">
 <meta property="og:site_name" content="Ham">
+<meta property="og:description" content="1. 1字节等于8bit而内存编址是以字节为单位的 2. 以32位机为例，CPU是以4字节为单位对数据进行处理的字节对齐目的： 提升效率，节省空间内存的对齐访问不是逻辑的问题，是硬件的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-01T16:15:05.000Z">
+<meta property="article:modified_time" content="2020-11-02T13:32:29.626Z">
 <meta property="article:author" content="Shuo Han">
 <meta name="twitter:card" content="summary">
   
@@ -144,211 +148,232 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1-1-memory" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/02/1-2-pointer/" class="archive-article-date">
-  	<time datetime="2020-11-02T14:54:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/02/1-2-pointer/">1.2 C foundation - pointer</a>
+    <h1 class="article-title" itemprop="name">
+      1.1 C foundation - Memory
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+		<!--显示阅读次数-->
+        
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+          <span class="icon-sort"></span>
+          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+                    阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+          </span>
+          </a>
+        
+        <!--显示阅读次数完毕-->
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/02/1-1-memory/" class="archive-article-date">
+        
+        <a href="/2020/11/02/1-1-memory/" class="archive-article-date">
   	<time datetime="2020-11-01T16:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/02/1-1-memory/">1.1 C foundation - Memory</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-1字节等于8bit"><a href="#1-1字节等于8bit" class="headerlink" title="1. 1字节等于8bit"></a>1. 1字节等于8bit</h2><p><strong>而内存编址是以字节为单位的</strong></p>
+<h2 id="2-以32位机为例，CPU是以4字节为单位对数据进行处理的"><a href="#2-以32位机为例，CPU是以4字节为单位对数据进行处理的" class="headerlink" title="2. 以32位机为例，CPU是以4字节为单位对数据进行处理的"></a>2. 以32位机为例，CPU是以<strong>4字节</strong>为单位对数据进行处理的</h2><p>字节对齐<br>目的： 提升效率，节省空间<br>内存的对齐访问不是<strong>逻辑</strong>的问题，是<strong>硬件</strong>的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。<br>对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率不高。</p>
+<a id="more"></a>
+<h2 id="3-指针变量也是一种变量，占4个字节"><a href="#3-指针变量也是一种变量，占4个字节" class="headerlink" title="3. 指针变量也是一种变量，占4个字节"></a>3. 指针变量也是一种变量，占4个字节</h2><p>类型只是对后面数字或者符号（代表的是内存地址）所表征的内存的一种长度规定和解析方法规定而已。<br>不管什么类型的指针，指针本身的大小的确定的，只不过是指向的数据类型不同而已</p>
+<h2 id="4-C语言对内存地址的封装"><a href="#4-C语言对内存地址的封装" class="headerlink" title="4. C语言对内存地址的封装"></a>4. C语言对内存地址的封装</h2><p>用变量名来访问内存、数据类型的含义、函数名的含义<br>譬如在C语言中<br><code>int a; a = 5; a += 4;        // a == 9;</code><br><strong>结合内存来解析C语言语句的本质:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a;	&#x2F;&#x2F; 编译器帮我们申请了1个int类型的内存格子</span><br><span class="line">        &#x2F;&#x2F;（长度是4字节，地址是确定的，但是只有编译器知道，我们是不知道的，也不需要知道。），</span><br><span class="line">		&#x2F;&#x2F;并且把符号a和这个格子绑定。</span><br><span class="line">a &#x3D; 5;	&#x2F;&#x2F; 编译器发现我们要给a赋值，就会把这个值5丢到符号a绑定的那个内存格子中。</span><br><span class="line">a +&#x3D; 4;	&#x2F;&#x2F; 编译器发现我们要给a加值，a +&#x3D; 4 等效于 a &#x3D; a + 4;编译器会先把a原来的值读出来，然后给这个值加4，再把加之后的和写入a里面去。</span><br></pre></td></tr></table></figure>
+<p>数据放在内容中没有意义的，通过数据类型，才知道占多长，是按int还是float亦或是指针类型去进行解析。</p>
+<h2 id="5-C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。"><a href="#5-C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。" class="headerlink" title="5. C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。"></a>5. C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。</h2><p><strong>数据类型决定长度的含义：</strong><br>我们一个内存地址（0x30000000），本来这个地址只代表1个字节的长度，但是实际上我们可以通过给他一个类型(int)，让他有了长度(4)，这样这个代表内存地址的数字(0x30000000)就能表示从这个数字(0x30000000)开头的连续的n(4)个字节的内存格子了(0x30000000 + 0x30000001 + 0x30000002 + 0x30000003)。<br><strong>数据类型决定解析方法的含义：</strong><br>譬如我有一个内存地址（0x30000000），我们可以通过给这个内存地址不同的类型来指定这个内存单元格子中二进制数的解析方法。<br>譬如我 (int) 0x30000000，含义就是(0x30000000 + 0x30000001 + 0x30000002 + 0x30000003)这4个字节连起来共同存储的是一个int型数据；<br>那么我(float)0x30000000，含义就是(0x30000000 + 0x30000001 + 0x30000002 + 0x30000003)这4个字节连起来共同存储的是一个float型数据；<br>之前讲过一个很重要的概念：内存单元格子的编址单位是字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(int *)0;</span><br><span class="line">(float *)0;</span><br><span class="line">(short)0;</span><br><span class="line">(char)0;</span><br><span class="line"></span><br><span class="line">int a;			&#x2F;&#x2F; int a;时编译器会自动给a分配一个内存地址，譬如说是0x12345678</span><br><span class="line">(int *)a;		&#x2F;&#x2F; 等价于(int *)0x12345678</span><br><span class="line">(float *)a;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>C语言中，函数就是一段代码的封装。函数名的实质就是这一段代码的首地址。<br>所以说函数名的本质也是一个内存地址。</p>
+<h2 id="6-结构体内嵌指针实现面向对象"><a href="#6-结构体内嵌指针实现面向对象" class="headerlink" title="6. 结构体内嵌指针实现面向对象"></a>6. 结构体内嵌指针实现面向对象</h2><p>总的来说：C语言是面向过程的，但是C语言写出的linux系统是面向对象的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct s</span><br><span class="line">&#123;</span><br><span class="line">    int age;                    &#x2F;&#x2F; 普通变量</span><br><span class="line">    void (*pFunc)(void);        &#x2F;&#x2F; 函数指针，指向 void func(void)这类的函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>使用这样的结构体就可以实现面向对象。<br>这样包含了函数指针的结构体就类似于面向对象中的class，结构体中的变量类似于class中的成员变量，结构体中的函数指针类似于class中的成员方法。</p>
+<h2 id="7-栈"><a href="#7-栈" class="headerlink" title="7. 栈"></a>7. 栈</h2><p>栈用来保存局部变量。<br>先进后出 FILO    first in last out        栈<br>先进先出 FIFO   first in first out      队列<br><strong>分析一个细节：</strong><br>    Q：C语言中，定义局部变量时如果未初始化，则值是随机的，为什么？<br>    A：定义局部变量，其实就是在栈中通过移动栈指针来给程序提供一个内存空间和这个局部变量名绑定。<br>       因为这段内存空间在栈上，而栈内存是反复使用的（脏的，上次用完没清零的），所以说使用栈来实现的局部变量定义时如果不显式初始化，值就是脏的。<br>    Q：如果你显式初始化怎么样？<br>    A：C语言是通过一个小手段来实现局部变量的初始化的。<br><code>int a = 15;        // 局部变量定义时初始化</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C语言编译器会自动把这行转成：</span><br><span class="line">int a;			&#x2F;&#x2F; 局部变量定义</span><br><span class="line">a &#x3D; 15;			&#x2F;&#x2F; 普通的赋值语句</span><br></pre></td></tr></table></figure>
 
+<p><strong>注意栈溢出</strong><br><em>面试题：栈溢出的原因&amp;如何处理</em></p>
+<h2 id="8-堆"><a href="#8-堆" class="headerlink" title="8. 堆"></a>8. 堆</h2><p>堆内存是操作系统划归给<strong>堆管理器</strong>来管理的，然后向使用者（用户进程）提供API<strong>（malloc和free）</strong>来使用堆内存。<br><strong>堆内存申请时必须给定大小，然后一旦申请完成大小不变</strong><br><strong>注意内存泄漏</strong><br><em>面试题：内存泄漏的原因&amp;如何处理</em></p>
+
+      
+
+<!- 文件结束 -->
+
+      
+        <div class="essayending">
+          <div>
+           <div style="text-align:center;color: #ccc;font-size:22px;">
+           <br/>
+           <br/>
+           -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+           <br/>
+           <br/>
+            <br/>
+            <br/>
+           </div>
+          </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      <!- 文件结束 配置完成-->
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢老板加鸡腿<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://s1.ax1x.com/2020/10/19/0zaxZ4.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/02/1-1-memory/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/25/TIPS/" class="archive-article-date">
-  	<time datetime="2020-10-25T05:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-25</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/02/1-2-pointer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          1.2 C foundation - pointer
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/25/TIPS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Tips of hexo</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/25/TIPS/">Tips of hexo</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1字节等于8bit"><span class="toc-number">1.</span> <span class="toc-text">1. 1字节等于8bit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-以32位机为例，CPU是以4字节为单位对数据进行处理的"><span class="toc-number">2.</span> <span class="toc-text">2. 以32位机为例，CPU是以4字节为单位对数据进行处理的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-指针变量也是一种变量，占4个字节"><span class="toc-number">3.</span> <span class="toc-text">3. 指针变量也是一种变量，占4个字节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-C语言对内存地址的封装"><span class="toc-number">4.</span> <span class="toc-text">4. C语言对内存地址的封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。"><span class="toc-number">5.</span> <span class="toc-text">5. C语言中数据类型的本质含义是：表示一个内存格子的长度和解析方法。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-结构体内嵌指针实现面向对象"><span class="toc-number">6.</span> <span class="toc-text">6. 结构体内嵌指针实现面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-栈"><span class="toc-number">7.</span> <span class="toc-text">7. 栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-堆"><span class="toc-number">8.</span> <span class="toc-text">8. 堆</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/21/interview-round3/" class="archive-article-date">
-  	<time datetime="2020-10-21T15:17:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/21/interview-round3/">Interview of foreign companie Q round 3 </a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/21/Fail-to-install-package-for-Yilia/" class="archive-article-date">
-  	<time datetime="2020-10-20T17:17:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/21/Fail-to-install-package-for-Yilia/">Fail to install package for Yilia</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/20/interview/" class="archive-article-date">
-  	<time datetime="2020-10-20T15:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/20/interview/">Interview of foreign companie Q round 2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/19/The-blog-arranged-on-Github-cannot-be-opened/" class="archive-article-date">
-  	<time datetime="2020-10-18T17:17:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/19/The-blog-arranged-on-Github-cannot-be-opened/">The blog site deployed on github cannot be opened</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -375,8 +400,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
