@@ -250,8 +250,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>参考资料：马士兵  <a href="https://www.bilibili.com/video/BV1vv411k7L3?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1vv411k7L3?p=2</a><br>从计算机组成原理，掌握程序，进程，线程的概念，内存模型，并行与并发，彻底理解多线程在CPU层级的实现！</p>
-<h2 id="1-程序运行的底层原理"><a href="#1-程序运行的底层原理" class="headerlink" title="1. 程序运行的底层原理"></a>1. 程序运行的底层原理</h2><p>程序是什么？  QQ.exe PowerPoint.exe ==&gt;程序；<br>进程是什么？  双击QQ.exe，在内存中分配空间、资源，把QQ相关的程序和资源放进去；<br>即<strong>程序启动，进入内存</strong> ，是资源分配的基本单位<br>线程是什么？  程序执行的基本单位</p>
-<p>程序如何开始运行？</p>
+<h2 id="1-程序运行的底层原理"><a href="#1-程序运行的底层原理" class="headerlink" title="1. 程序运行的底层原理"></a>1. 程序运行的底层原理</h2><p>程序是什么？  QQ.exe PowerPoint.exe ==&gt;硬盘；<br>进程是什么？  双击QQ.exe，在内存中分配空间、资源，把QQ相关的程序和资源放进去；<br>即<strong>程序启动，进入内存</strong> ，是资源分配的基本单位<br>线程是什么？  程序执行的基本单位</p>
+<p>程序如何开始运行？ CPU读指令-PC，读数据-Register，计算，回写，CPU读下一条指令<br>线程如何进行调度？ Linux线程调度器(OS)操作系统<br>线程切换？  Context Switch  CPU保存现场，执行新线程，回复现场，继续执行原线程的操作</p>
 
       
 
