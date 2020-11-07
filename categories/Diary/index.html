@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>1.2 C foundation - pointer | Ham</title>
+  <title>Category: Diary | Ham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2.1.指针到底是什么？1. WHAT is pointer指针的实质就是个变量，它跟普通变量没有任何本质区别。指针完整的名字应该叫指针变量，简称为指针。 2. WHY we need pointer(1)为了实现间接访问。在汇编中都有间接访问，其实就是CPU的寻址方式中的间接寻址。(2)间接访问（CPU的间接寻址）是CPU设计时决定的，这个决定了汇编语言必须能够实现间接寻址，又决定了汇编之上的C">
-<meta property="og:type" content="article">
-<meta property="og:title" content="1.2 C foundation - pointer">
-<meta property="og:url" content="http://yoursite.com/2020/11/02/1-2-pointer/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Ham">
+<meta property="og:url" content="http://yoursite.com/categories/Diary/index.html">
 <meta property="og:site_name" content="Ham">
-<meta property="og:description" content="2.1.指针到底是什么？1. WHAT is pointer指针的实质就是个变量，它跟普通变量没有任何本质区别。指针完整的名字应该叫指针变量，简称为指针。 2. WHY we need pointer(1)为了实现间接访问。在汇编中都有间接访问，其实就是CPU的寻址方式中的间接寻址。(2)间接访问（CPU的间接寻址）是CPU设计时决定的，这个决定了汇编语言必须能够实现间接寻址，又决定了汇编之上的C">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-02T14:54:44.000Z">
-<meta property="article:modified_time" content="2020-11-07T17:58:38.416Z">
 <meta property="article:author" content="Shuo Han">
 <meta name="twitter:card" content="summary">
   
@@ -148,241 +144,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-1-2-pointer" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      1.2 C foundation - pointer
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/11/08/diary/" class="archive-article-date">
+  	<time datetime="2020-11-07T17:11:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-08</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/11/08/diary/">Role in a team</a>
     </h1>
   
 
-		<!--显示阅读次数-->
-        
-          <br/>
-          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
-          <span class="icon-sort"></span>
-          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
-                    阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
-          </span>
-          </a>
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/11/02/1-2-pointer/" class="archive-article-date">
-  	<time datetime="2020-11-02T14:54:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="2-1-指针到底是什么？"><a href="#2-1-指针到底是什么？" class="headerlink" title="2.1.指针到底是什么？"></a>2.1.指针到底是什么？</h2><p><strong>1. WHAT</strong> is pointer<br>指针的实质就是个<strong>变量</strong>，它跟普通变量没有任何本质区别。指针完整的名字应该叫指针变量，简称为指针。</p>
-<p><strong>2. WHY</strong> we need pointer<br>(1)为了实现间接访问。在汇编中都有间接访问，其实就是CPU的寻址方式中的<strong>间接寻址</strong>。<br>(2)间接访问（CPU的间接寻址）是CPU设计时决定的，这个决定了汇编语言必须能够实现间接寻址，又决定了汇编之上的C语言也必须实现间接寻址。<br>(3)高级语言如Java、C#等没有指针，是因为语言本身帮我们封装了。</p>
-<a id="more"></a>
-<p><strong>3. HOW</strong> to use pointer<br>指针使用三部曲：<strong>定义指针变量、关联指针变量、解引用</strong><br>当我们<code>int *p</code>定义一个指针变量p时，因为p是局部变量，所以此时p变量中存储的是一个随机的数字。<br>此时如果我们解引用p，则相当于访问了这个随机数字为地址的内存空间。那这个空间到底能不能访问不知道，所以如果<strong>直接定义指针变量未绑定有效地址就去解引用几乎必死无疑。</strong><br>指针绑定的意义就在于：让指针指向一个可以访问、应该访问的地方<br>指针的解引用是为了间接访问目标变量</p>
-<h2 id="2-2-指针带来的一些符号的理解"><a href="#2-2-指针带来的一些符号的理解" class="headerlink" title="2.2.指针带来的一些符号的理解"></a>2.2.指针带来的一些符号的理解</h2><p><code>*</code> 符号的理解<br>一用于表明要定义的指针的类型<br>二是指针解引用，解引用时<code>*p</code>表示p指向的变量本身<br><code>&amp;</code> 符号的理解<br><strong>指针定义并初始化、与指针定义然后赋值的区别</strong><br>指针定义时可以初始化，指针的初始化其实就是给指针变量初值（跟普通变量的初始化没有任何本质区别）。<br>指针变量定义同时初始化的格式是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 32;</span><br><span class="line">int *p &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
-<p>不初始化时指针变量先定义再赋值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 32;</span><br><span class="line">int *p; 	</span><br><span class="line">p &#x3D; &amp;a;		&#x2F;&#x2F;正确的</span><br><span class="line">*p &#x3D; &amp;a;	&#x2F;&#x2F;错误的</span><br></pre></td></tr></table></figure>
-<p><code>=</code>赋值符号的实质<br>当一个变量做左值时，编译器认为这个变量符号的真实含义是这个变量所对应的那个<strong>内存空间</strong>；<br>当一个变量做右值时，编译器认为这个变量符号的真实含义是这个变量的<strong>值</strong>，也就是这个变量所对应的内存空间中存储的那个数。</p>
-<h2 id="2-3-野指针问题"><a href="#2-3-野指针问题" class="headerlink" title="2.3.野指针问题"></a>2.3.野指针问题</h2><p>介绍什么是野指针以及野指针造成的原因和后果，然后重点理解如何防止野指针的出现，养成良好的使用指针的习惯，避免出现野指针导致程序运行时错误。</p>
-<h2 id="2-4-const关键字与指针"><a href="#2-4-const关键字与指针" class="headerlink" title="2.4.const关键字与指针"></a>2.4.const关键字与指针</h2><p>const关键字的用法，重点是const关键字修饰指针的4种常见格式，及其理解方法。</p>
-<h2 id="2-5-深入学习一下数组"><a href="#2-5-深入学习一下数组" class="headerlink" title="2.5.深入学习一下数组"></a>2.5.深入学习一下数组</h2><p>数组，首先从内存和编译器两个角度来理解数组，然后重点理解数组相关的几个符号在做左值和右值时的意义区别，这些含义是深入理解C语言数组的关键</p>
-<h2 id="2-6-指针与数组的关系"><a href="#2-6-指针与数组的关系" class="headerlink" title="2.6.指针与数组的关系"></a>2.6.指针与数组的关系</h2><p>将数组和指针结合起来，理解指针指向数组时的一些运算，分析其运算时的结果。通过实例理解指针方式访问数组，以及指针运算访问数组元素的细节。</p>
-<h2 id="2-7-指针与强制类型转换"><a href="#2-7-指针与强制类型转换" class="headerlink" title="2.7.指针与强制类型转换"></a>2.7.指针与强制类型转换</h2><p>理解普通变量数据类型的意义，理解指针变量数据类型的含义，理解指针变量在进行加减运算时数据类型的作用和影响。</p>
-<h2 id="2-8-指针、数组与sizeof运算符"><a href="#2-8-指针、数组与sizeof运算符" class="headerlink" title="2.8.指针、数组与sizeof运算符"></a>2.8.指针、数组与sizeof运算符</h2><p>一些和指针、数组有关的sizeof运算的案例，通过这些代码实例希望深入掌握一些C语言编程细节的语法表现，从而对指针和数组有更深入的理解。</p>
-<h2 id="2-9-指针与函数传参"><a href="#2-9-指针与函数传参" class="headerlink" title="2.9.指针与函数传参"></a>2.9.指针与函数传参</h2><p>理解数组、指针、结构体等类型变量作为函数参数的情况。通过示例演示和分析理解函数传参的实质，传值调用和传址调用等概念的真实内涵。</p>
-<h2 id="2-10-输入型参数与输出型参数"><a href="#2-10-输入型参数与输出型参数" class="headerlink" title="2.10.输入型参数与输出型参数"></a>2.10.输入型参数与输出型参数</h2><p>函数传参，const修饰指针变量等知识点，最后引入输入型参数和输出型参数的概念。</p>
-
-      
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending">
-          <div>
-           <div style="text-align:center;color: #ccc;font-size:22px;">
-           <br/>
-           <br/>
-           -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
-           <br/>
-           <br/>
-            <br/>
-            <br/>
-           </div>
-          </div>
-        </div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢老板加鸡腿<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="https://s1.ax1x.com/2020/10/19/0zaxZ4.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+        <div class="article-info info-on-right">
+          
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/foundation//" class="article-tag-list-link color1">foundation</a>
+        			<a href="/categories/Diary//" class="article-tag-list-link color1">Diary</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/02/1-2-pointer/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/11/06/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Program
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/11/02/1-1-memory/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1.1 C foundation - Memory</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-指针到底是什么？"><span class="toc-number">1.</span> <span class="toc-text">2.1.指针到底是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-指针带来的一些符号的理解"><span class="toc-number">2.</span> <span class="toc-text">2.2.指针带来的一些符号的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-野指针问题"><span class="toc-number">3.</span> <span class="toc-text">2.3.野指针问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-const关键字与指针"><span class="toc-number">4.</span> <span class="toc-text">2.4.const关键字与指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-深入学习一下数组"><span class="toc-number">5.</span> <span class="toc-text">2.5.深入学习一下数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-指针与数组的关系"><span class="toc-number">6.</span> <span class="toc-text">2.6.指针与数组的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-指针与强制类型转换"><span class="toc-number">7.</span> <span class="toc-text">2.7.指针与强制类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-指针、数组与sizeof运算符"><span class="toc-number">8.</span> <span class="toc-text">2.8.指针、数组与sizeof运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-指针与函数传参"><span class="toc-number">9.</span> <span class="toc-text">2.9.指针与函数传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-输入型参数与输出型参数"><span class="toc-number">10.</span> <span class="toc-text">2.10.输入型参数与输出型参数</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -409,10 +224,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
