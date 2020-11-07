@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>程序基础 | Ham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考资料：马士兵  https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vv411k7L3?p&#x3D;2从计算机组成原理，掌握程序，进程，线程的概念，内存模型，并行与并发，彻底理解多线程在CPU层级的实现！ 1. 程序运行的底层原理程序是什么？QQ.exe PowerPoint.exe &#x3D;&#x3D;&gt;硬盘；">
+  <meta name="description" content="参考资料：马士兵  https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vv411k7L3?p&#x3D;2 1. 程序运行的底层原理程序是什么？QQ.exe PowerPoint.exe &#x3D;&#x3D;&gt;硬盘；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="程序基础">
 <meta property="og:url" content="http://yoursite.com/2020/11/06/%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Ham">
-<meta property="og:description" content="参考资料：马士兵  https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vv411k7L3?p&#x3D;2从计算机组成原理，掌握程序，进程，线程的概念，内存模型，并行与并发，彻底理解多线程在CPU层级的实现！ 1. 程序运行的底层原理程序是什么？QQ.exe PowerPoint.exe &#x3D;&#x3D;&gt;硬盘；">
+<meta property="og:description" content="参考资料：马士兵  https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1vv411k7L3?p&#x3D;2 1. 程序运行的底层原理程序是什么？QQ.exe PowerPoint.exe &#x3D;&#x3D;&gt;硬盘；">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-06T15:48:16.000Z">
-<meta property="article:modified_time" content="2020-11-06T17:39:01.071Z">
+<meta property="article:modified_time" content="2020-11-07T04:37:39.010Z">
 <meta property="article:author" content="Shuo Han">
 <meta name="twitter:card" content="summary">
   
@@ -180,7 +180,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考资料：马士兵  <a href="https://www.bilibili.com/video/BV1vv411k7L3?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1vv411k7L3?p=2</a><br>从计算机组成原理，掌握程序，进程，线程的概念，内存模型，并行与并发，彻底理解多线程在CPU层级的实现！</p>
+        <p>参考资料：马士兵  <a href="https://www.bilibili.com/video/BV1vv411k7L3?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1vv411k7L3?p=2</a></p>
 <h2 id="1-程序运行的底层原理"><a href="#1-程序运行的底层原理" class="headerlink" title="1. 程序运行的底层原理"></a>1. 程序运行的底层原理</h2><p>程序是什么？<br>QQ.exe PowerPoint.exe ==&gt;硬盘；</p>
 <a id="more"></a>
 <p>进程是什么？<br>双击QQ.exe，在内存中分配空间、资源，把QQ相关的程序和资源放进去；<br>即程序启动，进入内存 ，是资源分配的基本单位</p>
@@ -188,7 +188,8 @@
 <p>程序如何开始运行？<br>CPU读指令-PC，读数据-Register，计算，回写，CPU读下一条指令</p>
 <p>线程如何进行调度？<br>Linux线程调度器(OS)操作系统</p>
 <p>线程切换？<br>Context Switch  CPU保存现场，执行新线程，回复现场，继续执行原线程的操作</p>
-<h2 id="2-锁"><a href="#2-锁" class="headerlink" title="2. 锁"></a>2. 锁</h2><p>保证数据一致性<br>线程同步<br>对不持有锁的线程：1.自旋（轻量级锁） 2.进入等待队列（重量级锁）<br>面试题：轻量级锁一定比重量级锁效率高么？<br>A：No，考虑场景<br>当占用资源的线程结束很快，自旋锁不需要等很久，则效率很高，不需要经过OS及队列==&gt;轻量级锁<br>当等待的很多，锁竞争很激烈，那么所有的都在自旋(While 1循环)，占用CPU资源，则进队列，不消耗CPU老老实实等着OS调度==&gt;重量级锁</p>
+<h2 id="2-锁"><a href="#2-锁" class="headerlink" title="2. 锁"></a>2. 锁</h2><p>保证数据一致性<br>线程同步<br>对不持有锁的线程：1.自旋（轻量级锁） 2.进入等待队列（重量级锁）</p>
+<p><strong>面试题：轻量级锁一定比重量级锁效率高么？</strong><br>A：No，考虑场景<br>当占用资源的线程结束很快，自旋锁不需要等很久，则效率很高，不需要经过OS及队列==&gt;轻量级锁<br>当等待的很多，锁竞争很激烈，那么所有的都在自旋(While 1循环)，占用CPU资源，则进队列，不消耗CPU老老实实等着OS调度==&gt;重量级锁</p>
 
       
 
