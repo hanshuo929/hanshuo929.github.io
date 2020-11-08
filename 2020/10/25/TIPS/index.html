@@ -16,7 +16,7 @@
 <meta property="og:description" content="1. 移动端无法访问hexo博客的解决方法WIFI下将手机DNS地址手动改配为 114.114.114.114，一个良心的DNS服务商^_^移动网络还没搞定解决方法，俺的移动的iphone和同事联通的三星都访问不了，但另一个移动的小手机却可以，待解决">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-25T05:12:56.000Z">
-<meta property="article:modified_time" content="2020-11-07T17:59:53.941Z">
+<meta property="article:modified_time" content="2020-11-08T08:38:45.500Z">
 <meta property="article:author" content="Shuo Han">
 <meta name="twitter:card" content="summary">
   
@@ -196,8 +196,12 @@
 </li>
 </ol>
 <h2 id="4-首页不显示全部文章"><a href="#4-首页不显示全部文章" class="headerlink" title="4. 首页不显示全部文章"></a>4. 首页不显示全部文章</h2><p>在需要截断的地方加入：<br><code>&lt;!--more--&gt;</code><br>进行截断</p>
+<h2 id="5-category分类文章无内文内容的解决方法"><a href="#5-category分类文章无内文内容的解决方法" class="headerlink" title="5. category分类文章无内文内容的解决方法"></a>5. category分类文章无内文内容的解决方法</h2><p><a href="https://www.cnblogs.com/zmj97/archive/2004/01/13/10161662.html" target="_blank" rel="noopener">https://www.cnblogs.com/zmj97/archive/2004/01/13/10161662.html</a><br>打开landscape/_partial/article.ejs，</p>
+<p>在<code>&lt;div class=&quot;article-entry&quot; itemprop=&quot;articleBody&quot;&gt;</code>的div内添加代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (page.type &#x3D;&#x3D;&#x3D; &quot;tags&quot;) &#123; %&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;tag-cloud&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;tag-cloud-title&quot;&gt;</span><br><span class="line">    &lt;%- &quot;TOTAl : &quot; + site.tags.length %&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;tag-cloud-tags&quot;&gt;</span><br><span class="line">    &lt;%- tagcloud(&#123;</span><br><span class="line">      min_font: 12,</span><br><span class="line">      max_font: 30,</span><br><span class="line">      amount: 200,</span><br><span class="line">      color: true,</span><br><span class="line">      start_color: &#39;#555&#39;,</span><br><span class="line">      end_color: &#39;#111&#39;</span><br><span class="line">      &#125;) %&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;% &#125; else if (page.type &#x3D;&#x3D;&#x3D; &#39;categories&#39;) &#123; %&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div class&#x3D;&quot;category-all-page&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;category-all-title&quot;&gt;</span><br><span class="line">    &lt;%- &quot;TOTAL : &quot; + site.categories.length %&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class&#x3D;&quot;category-all&quot;&gt;</span><br><span class="line">    &lt;%- list_categories() %&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
       
+	  
 
 <!- 文件结束 -->
 
@@ -362,7 +366,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-移动端无法访问hexo博客的解决方法"><span class="toc-number">1.</span> <span class="toc-text">1. 移动端无法访问hexo博客的解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用Hexo推代码到github时添加备注与git相同"><span class="toc-number">2.</span> <span class="toc-text">2. 使用Hexo推代码到github时添加备注与git相同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-hexo添加文章置顶的方法"><span class="toc-number">3.</span> <span class="toc-text">3. hexo添加文章置顶的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-首页不显示全部文章"><span class="toc-number">4.</span> <span class="toc-text">4. 首页不显示全部文章</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-移动端无法访问hexo博客的解决方法"><span class="toc-number">1.</span> <span class="toc-text">1. 移动端无法访问hexo博客的解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用Hexo推代码到github时添加备注与git相同"><span class="toc-number">2.</span> <span class="toc-text">2. 使用Hexo推代码到github时添加备注与git相同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-hexo添加文章置顶的方法"><span class="toc-number">3.</span> <span class="toc-text">3. hexo添加文章置顶的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-首页不显示全部文章"><span class="toc-number">4.</span> <span class="toc-text">4. 首页不显示全部文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-category分类文章无内文内容的解决方法"><span class="toc-number">5.</span> <span class="toc-text">5. category分类文章无内文内容的解决方法</span></a></li></ol>
                     </div>
                 </span>
             </div>
