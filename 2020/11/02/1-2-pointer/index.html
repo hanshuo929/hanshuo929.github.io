@@ -16,7 +16,7 @@
 <meta property="og:description" content="2.1.指针到底是什么？1. WHAT is pointer指针的实质就是个变量，它跟普通变量没有任何本质区别。指针完整的名字应该叫指针变量，简称为指针。 2. WHY we need pointer(1)为了实现间接访问。在汇编中都有间接访问，其实就是CPU的寻址方式中的间接寻址。(2)间接访问（CPU的间接寻址）是CPU设计时决定的，这个决定了汇编语言必须能够实现间接寻址，又决定了汇编之上的C">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-02T14:54:44.000Z">
-<meta property="article:modified_time" content="2020-11-08T13:35:04.610Z">
+<meta property="article:modified_time" content="2020-11-20T15:27:53.900Z">
 <meta property="article:author" content="Shuo Han">
 <meta property="article:tag" content="pointer">
 <meta name="twitter:card" content="summary">
@@ -205,9 +205,20 @@
 <p>不初始化时指针变量先定义再赋值：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 32;</span><br><span class="line">int *p; 	</span><br><span class="line">p &#x3D; &amp;a;		&#x2F;&#x2F;正确的</span><br><span class="line">*p &#x3D; &amp;a;	&#x2F;&#x2F;错误的</span><br></pre></td></tr></table></figure>
 <p><code>=</code>赋值符号的实质<br>当一个变量做左值时，编译器认为这个变量符号的真实含义是这个变量所对应的那个<strong>内存空间</strong>；<br>当一个变量做右值时，编译器认为这个变量符号的真实含义是这个变量的<strong>值</strong>，也就是这个变量所对应的内存空间中存储的那个数。</p>
-<h2 id="2-3-野指针问题"><a href="#2-3-野指针问题" class="headerlink" title="2.3.野指针问题"></a>2.3.野指针问题</h2><p>介绍什么是野指针以及野指针造成的原因和后果，然后重点理解如何防止野指针的出现，养成良好的使用指针的习惯，避免出现野指针导致程序运行时错误。</p>
-<h2 id="2-4-const关键字与指针"><a href="#2-4-const关键字与指针" class="headerlink" title="2.4.const关键字与指针"></a>2.4.const关键字与指针</h2><p>const关键字的用法，重点是const关键字修饰指针的4种常见格式，及其理解方法。</p>
-<h2 id="2-5-深入学习一下数组"><a href="#2-5-深入学习一下数组" class="headerlink" title="2.5.深入学习一下数组"></a>2.5.深入学习一下数组</h2><p>数组，首先从内存和编译器两个角度来理解数组，然后重点理解数组相关的几个符号在做左值和右值时的意义区别，这些含义是深入理解C语言数组的关键</p>
+<h2 id="2-3-野指针问题"><a href="#2-3-野指针问题" class="headerlink" title="2.3.野指针问题"></a>2.3.野指针问题</h2><p><strong>野指针来源</strong><br>指针定义了以后没有初始化，也没有赋值，即指针没有明确的指向一个可用的内存空间，然后去解引用。<br><strong>避免方法</strong><br>在指针的解引用之前，一定确保指针指向一个绝对可用的空间。<br>    1：定义指针时，同时初始化为NULL<br>    2：在指针解引用之前，先去判断这个指针是不是NULL<br>    3：指针使用完之后，将其赋值为NULL<br>    4：在指针使用之前，将其赋值绑定给一个可用地址空间</p>
+<p><strong>NULL到底是什么</strong><br>(1)NULL在C/C++中定义为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef _cplusplus			&#x2F;&#x2F; 定义这个符号就表示当前是C++环境</span><br><span class="line">#define NULL 0				&#x2F;&#x2F; 在C++中NULL就是0</span><br><span class="line">#else</span><br><span class="line">#define NULL (void *)0		&#x2F;&#x2F; 在C中NULL是强制类型转换为void *的0</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>(2)在C语言中，<code>int *p;</code>你可以<code>p = (int *)0;</code>但是不可以<code>p = 0;</code>因为类型不相同。<br>(3)<strong>所以NULL的实质其实就是0</strong>，然后我们给指针赋初值为NULL，其实就是让指针指向0地址处。<br>为什么指向0地址处？2个原因。<br>第一层原因是0地址处作为一个特殊地址（我们认为指针指向这里就表示指针没有被初始化，就表示是野指针）；<br>第二层原因是这个地址0地址在一般的操作系统中都是不可被访问的，如果C语言程序员不检查是否等于NULL就去解引用,写代码直接去解引用就会触发段错误，这种已经是最好的结果了。<br>(4)一般在判断指针是否野指针时，都写成<code>if (NULL != p)</code>而不是写成 <code>if (p != NULL)</code><br>原因是：如果NULL写在后面，当中间是==号的时候，有时候容易忘记写成了=，这时候其实程序已经错误，但是编译器不会报错。这个错误对新手很难检查出来；如果习惯了把NULL写在前面，当错误的把==写成了=时，编译器会报错，程序员会发现这个错误。</p>
+<h2 id="2-4-const关键字与指针"><a href="#2-4-const关键字与指针" class="headerlink" title="2.4.const关键字与指针"></a>2.4.const关键字与指针</h2><p><strong>const修饰指针的4种形式</strong><br>(1)const关键字，在C语言中用来修饰变量，表示这个变量是常量。<br>(2)const修饰指针有4种形式，区分清楚这4种即可全部理解const和指针。<br>    第一种：<code>const int *p;</code>          const修饰<code>*p</code>,<br>    第二种：<code>int const *p;</code>          const修饰<code>*p</code>,<br>    第三种：<code>int * const p;</code>         const修饰<code>p</code>,<br>    第四种：<code>const int * const p;</code>   const修饰<code>*p</code>/<code>p</code>,<br>(3)主要理解涉及的2个变量：第一个是指针变量p本身，第二个是p指向的那个变量<code>(*p)</code>。<br>一个const关键字只能修饰一个变量，所以弄清楚这4个表达式的关键就是搞清楚const放在某个位置是修饰谁的</p>
+<p><strong>const修饰的变量真的不能改吗？</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const int a &#x3D; 5；</span><br><span class="line">a &#x3D; 6 ;  &#x2F;&#x2F;&#x3D;&#x3D;&#x3D;&gt;error    T_T</span><br><span class="line"></span><br><span class="line">int *p &#x3D;(int *) &amp;a;</span><br><span class="line">*p &#x3D; 6;  &#x2F;&#x2F;&#x3D;&#x3D;&#x3D;&gt;success  XD</span><br></pre></td></tr></table></figure>
+<p>const修饰的变量其实是可以改的（前提是gcc环境下）。<br>const修饰的变量到底能不能真的被修改，取决于具体的环境，C语言本身并没有完全严格一致的要求。<br>在<strong>gcc</strong>中，const是通过编译器在<strong>编译</strong>的时候执行检查来确保实现的（也就是说const类型的变量不能改是编译错误，不是运行时错误。）所以我们只要想办法骗过编译器，就可以修改const定义的常量，而运行时不会报错。<br>(4)更深入一层的原因，是因为<strong>gcc把const类型的常量也放在了data段，其实和普通的全局变量放在data段是一样实现的，只是通过编译器认定这个变量是const的，运行时并没有标记const标志</strong>，所以只要骗过编译器就可以修改了。</p>
+<p>在C语言中使用const，就好象是 一种道德约束而非法律约束，所以大家使用const时更多是传递一种信息，就是告诉编译器、也告诉读程序的人，这个变量是不应该也不必被修改的。</p>
+<h2 id="2-5-深入学习一下数组"><a href="#2-5-深入学习一下数组" class="headerlink" title="2.5.深入学习一下数组"></a>2.5.深入学习一下数组</h2><p>4.3.5.1、从内存角度来理解数组<br>(1)从内存角度讲，数组变量就是一次分配多个变量，而且这多个变量在内存中的存储单元是依次相连接的。<br>(2)我们分开定义多个变量（譬如int a, b, c, d;）和一次定义一个数组（int a[4]）；这两种定义方法相同点是都定义了4个int型变量，而且这4个变量都是独立的单个使用的；不同点是单独定义时a、b、c、d在内存中的地址不一定相连，但是定义成数组后，数组中的4个元素地址肯定是依次相连的。<br>(3)数组中多个变量虽然必须单独访问，但是因为他们的地址彼此相连，因此很适合用指针来操作，因此数组和指针天生就叫纠结在一起。</p>
+<p>4.3.5.2、从编译器角度来理解数组<br>(1)从编译器角度来讲，数组变量也是变量，和普通变量和指针变量并没有本质不同。变量的本质就是一个地址，这个地址在编译器中决定具体数值，具体数值和变量名绑定，变量类型决定这个地址的延续长度。<br>(2)搞清楚：变量、变量名、变量类型这三个概念的具体含义，很多问题都清楚了。<br>int a;  char a;</p>
+<p>4.3.5.3、数组中几个关键符号（a a[0] &amp;a &amp;a[0]）的理解（前提是 int a[10]）<br>(1)这4个符号搞清楚了，数组相关的很多问题都有答案了。理解这些符号的时候要和左值右值结合起来，也就是搞清楚每个符号分别做左值和右值时的不同含义。<br>(2)a就是数组名。a做左值时表示整个数组的所有空间（10×4=40字节），又因为C语言规定数组操作时要独立单个操作，不能整体操作数组，所以a不能做左值；a做右值表示数组首元素（数组的第0个元素，也就是a[0]）的首地址（首地址就是起始地址，就是4个字节中最开始第一个字节的地址）。a做右值等同于&amp;a[0];<br>(2)a[0]表示数组的首元素，也就是数组的第0个元素。做左值时表示数组第0个元素对应的内存空间（连续4字节）；做右值时表示数组第0个元素的值（也就是数组第0个元素对应的内存空间中存储的那个数）<br>(3)&amp;a就是数组名a取地址，字面意思来看就应该是数组的地址。&amp;a不能做左值（&amp;a实质是一个常量，不是变量因此不能赋值，所以自然不能做左值。）；&amp;a做右值时表示整个数组的首地址。<br>(4)&amp;a[0]字面意思就是数组第0个元素的首地址（搞清楚[]和&amp;的优先级，[]的优先级要高于&amp;，所以a先和[]结合再取地址）。做左值时表示数组首元素对应的内存空间，做右值时表示数组首元素的值（也就是数组首元素对应的内存空间中存储的那个数值）。做右值时&amp;a[0]等同于a。</p>
+<p>解释：为什么数组的地址是常量？因为数组是编译器在内存中自动分配的。当我们每次执行程序时，运行时都会帮我们分配一块内存给这个数组，只要完成了分配，这个数组的地址就定好了，本次程序运行直到终止都无法再改了。那么我们在程序中只能通过&amp;a来获取这个分配的地址，却不能去用赋值运算符修改它。</p>
+<p>总结：<br>1：&amp;a和a做右值时的区别：&amp;a是整个数组的首地址，而a是数组首元素的首地址。这两个在数字上是相等的，但是意义不相同。意义不相同会导致他们在参与运算的时候有不同的表现。<br>2：a和&amp;a[0]做右值时意义和数值完全相同，完全可以互相替代。<br>3：&amp;a是常量，不能做左值。<br>4：a做左值代表整个数组所有空间，所以a不能做左值。</p>
 <h2 id="2-6-指针与数组的关系"><a href="#2-6-指针与数组的关系" class="headerlink" title="2.6.指针与数组的关系"></a>2.6.指针与数组的关系</h2><p>将数组和指针结合起来，理解指针指向数组时的一些运算，分析其运算时的结果。通过实例理解指针方式访问数组，以及指针运算访问数组元素的细节。</p>
 <h2 id="2-7-指针与强制类型转换"><a href="#2-7-指针与强制类型转换" class="headerlink" title="2.7.指针与强制类型转换"></a>2.7.指针与强制类型转换</h2><p>理解普通变量数据类型的意义，理解指针变量数据类型的含义，理解指针变量在进行加减运算时数据类型的作用和影响。</p>
 <h2 id="2-8-指针、数组与sizeof运算符"><a href="#2-8-指针、数组与sizeof运算符" class="headerlink" title="2.8.指针、数组与sizeof运算符"></a>2.8.指针、数组与sizeof运算符</h2><p>一些和指针、数组有关的sizeof运算的案例，通过这些代码实例希望深入掌握一些C语言编程细节的语法表现，从而对指针和数组有更深入的理解。</p>
@@ -533,6 +544,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pointer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">heap</a>
               </li>
              
@@ -550,10 +565,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">task</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pointer</a>
               </li>
             
             <div class="clearfix"></div>
