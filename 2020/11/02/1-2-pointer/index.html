@@ -16,7 +16,7 @@
 <meta property="og:description" content="2.1 指针到底是什么？1. WHAT is pointer指针的实质就是个变量，它跟普通变量没有任何本质区别。指针完整的名字应该叫指针变量，简称为指针。 2. WHY we need pointer(1)为了实现间接访问。在汇编中都有间接访问，其实就是CPU的寻址方式中的间接寻址。(2)间接访问（CPU的间接寻址）是CPU设计时决定的，这个决定了汇编语言必须能够实现间接寻址，又决定了汇编之上的C">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-02T14:54:44.000Z">
-<meta property="article:modified_time" content="2020-11-24T16:23:31.034Z">
+<meta property="article:modified_time" content="2020-11-27T15:35:05.080Z">
 <meta property="article:author" content="Shuo Han">
 <meta property="article:tag" content="pointer">
 <meta name="twitter:card" content="summary">
@@ -242,21 +242,14 @@
 <h3 id="4-指针数据类型转换实例分析2（int-gt-float-）"><a href="#4-指针数据类型转换实例分析2（int-gt-float-）" class="headerlink" title="4. 指针数据类型转换实例分析2（int * -&gt; float *）"></a>4. 指针数据类型转换实例分析2（int * -&gt; float *）</h3><p>(1)之前分析过：int和float的解析方式是不兼容的，所以<code>int *</code>转成<code>float *</code>再去访问绝对会出错。</p>
 <h2 id="2-8-指针、数组与sizeof运算符"><a href="#2-8-指针、数组与sizeof运算符" class="headerlink" title="2.8.指针、数组与sizeof运算符"></a>2.8.指针、数组与sizeof运算符</h2><p>(1)sizeof是C语言的一个<strong>运算符</strong>（sizeof不是函数，虽然用法很像函数），sizeof的作用是用来返回()里面的变量或者数据类型占用的内存<strong>字节数</strong>。<br>(2)sizeof存在的价值？主要是因为在不同平台下各种数据类型所占的内存字节数不尽相同（譬如int在32位系统中为4字节，在16位系统中为2字节···）。所以程序中需要使用sizeof来判断当前变量/数据类型在当前环境下占几个字节。</p>
 <ol>
-<li><p><code>char str[] = ”hello”;  sizeof(str) // 6     sizeof(str[0]) // 1     strlen(str) //5</code></p>
-</li>
-<li><p><code>char *p=str;              sizeof(p)  //4      sizeof(*p)     // 1  strlen(p)   //5</code><br>(1)32位系统中所有指针的长度都是4，不管是什么类型的指针。<br>(2)strlen是一个C库函数，用来返回一个字符串的长度（注意，字符串的长度是不计算字符串末尾的’\0’的）。一定要注意strlen接收的参数必须是一个字符串（字符串的特征是以’\0’结尾）    </p>
-</li>
-<li><p><code>int n=10;                 sizeof(n)    //4  ==&gt;sizeof(int)</code><br>(1)sizeof测试一个变量本身，和sizeof测试这个变量的类型，结果是一样的。</p>
-</li>
-<li><p><code>int b[100];            sizeof(b)    //100*4  ==&gt;100*sizeof(int)</code><br>(1)sizeof(数组名)的时候，数组名不做左值也不做右值，纯粹就是数组名的含义。那么sizeof(数组名)实际返回的是整个数组所占用内存空间（以字节为单位的）。</p>
-</li>
+<li><code>char str[] = ”hello”;  sizeof(str) // 6     sizeof(str[0]) // 1     strlen(str) //5</code></li>
+<li><code>char *p=str;              sizeof(p)  //4      sizeof(*p)     // 1  strlen(p)   //5</code><br>(1)32位系统中所有指针的长度都是4，不管是什么类型的指针。<br>(2)strlen是一个C库函数，用来返回一个字符串的长度（注意，字符串的长度是不计算字符串末尾的’\0’的）。一定要注意strlen接收的参数必须是一个字符串（字符串的特征是以’\0’结尾）    </li>
+<li><code>int n=10;                 sizeof(n)    //4  ==&gt;sizeof(int)</code><br>(1)sizeof测试一个变量本身，和sizeof测试这个变量的类型，结果是一样的。</li>
+<li><code>int b[100];            sizeof(b)    //100*4  ==&gt;100*sizeof(int)</code><br>(1)sizeof(数组名)的时候，数组名不做左值也不做右值，纯粹就是数组名的含义。那么sizeof(数组名)实际返回的是整个数组所占用内存空间（以字节为单位的）。</li>
 <li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void fun(int b[100])</span><br><span class="line">&#123;</span><br><span class="line">	sizeof(b);	   &#x2F;&#x2F;4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(1)函数传参，形参是可以用数组的<br>(2)<strong>函数形参是数组时，实际传递是不是整个数组，而是数组的首元素首地址。</strong>也就是说函数传参用数组来传，实际相当于传递的是指针（指针指向数组的首元素首地址）。        </p>
-</li>
+(1)函数传参，形参是可以用数组的<br>(2)<strong>函数形参是数组时，实际传递是不是整个数组，而是数组的首元素首地址。</strong>也就是说函数传参用数组来传，实际相当于传递的是指针（指针指向数组的首元素首地址）。        </li>
 <li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#define dpChar char *</span><br><span class="line">typedef char *tpChar;</span><br><span class="line"></span><br><span class="line">dpChar p1,  p2;		&#x3D;&#x3D;&gt; char *p1 ,p2  &#x3D;&#x3D;&gt; char *p1 ,char p2  &#x2F;&#x2F;只能管一个	sizeof(p1) &#x2F;&#x2F;4	sizeof(p2) &#x2F;&#x2F;1</span><br><span class="line">tpChar p3,  p4;		&#x3D;&#x3D;&gt; char *p3 ,*p3 &#x3D;&#x3D;&gt; char *p3 ,char *p4             	sizeof(p3) &#x2F;&#x2F;4	sizeof(p2) &#x2F;&#x2F;4</span><br></pre></td></tr></table></figure>
-<h2 id="2-9-指针与函数传参"><a href="#2-9-指针与函数传参" class="headerlink" title="2.9.指针与函数传参"></a>2.9.指针与函数传参</h2><p>理解数组、指针、结构体等类型变量作为函数参数的情况。通过示例演示和分析理解函数传参的实质，传值调用和传址调用等概念的真实内涵。</p>
-<h2 id="2-10-输入型参数与输出型参数"><a href="#2-10-输入型参数与输出型参数" class="headerlink" title="2.10.输入型参数与输出型参数"></a>2.10.输入型参数与输出型参数</h2><p>函数传参，const修饰指针变量等知识点，最后引入输入型参数和输出型参数的概念。</p>
-</li>
+<h2 id="2-9-指针与函数传参"><a href="#2-9-指针与函数传参" class="headerlink" title="2.9.指针与函数传参"></a>2.9.指针与函数传参</h2>理解数组、指针、结构体等类型变量作为函数参数的情况。通过示例演示和分析理解函数传参的实质，传值调用和传址调用等概念的真实内涵。<h2 id="2-10-输入型参数与输出型参数"><a href="#2-10-输入型参数与输出型参数" class="headerlink" title="2.10.输入型参数与输出型参数"></a>2.10.输入型参数与输出型参数</h2>函数传参，const修饰指针变量等知识点，最后引入输入型参数和输出型参数的概念。</li>
 </ol>
 
       
