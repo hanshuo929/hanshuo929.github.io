@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ham</title>
+  <title>learn from FR UT enhancement | Ham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ham">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="1. 要非常注意指针的初始化及使用常用方式 12uint32 a;uint32 *p &#x3D; &amp;a; 2. 当出现非常明显的overwrite的时候，要重点排查数组的边界3. NLO结构体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="learn from FR UT enhancement">
+<meta property="og:url" content="http://yoursite.com/2022/04/08/enhancement/index.html">
 <meta property="og:site_name" content="Ham">
+<meta property="og:description" content="1. 要非常注意指针的初始化及使用常用方式 12uint32 a;uint32 *p &#x3D; &amp;a; 2. 当出现非常明显的overwrite的时候，要重点排查数组的边界3. NLO结构体">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-08T12:50:46.000Z">
+<meta property="article:modified_time" content="2022-04-08T13:20:59.385Z">
 <meta property="article:author" content="Shuo Han">
+<meta property="article:tag" content="pointer">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Ham" type="application/atom+xml">
@@ -159,45 +164,91 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-1-1-memory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-enhancement" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/1-1-memory/">1.1 C foundation - Memory</a>
+    <h1 class="article-title" itemprop="name">
+      learn from FR UT enhancement
     </h1>
   
 
 		<!--显示阅读次数-->
         
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+          <span class="icon-sort"></span>
+          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+                    阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+          </span>
+          </a>
+        
         <!--显示阅读次数完毕-->
 
         
-        <a href="/2020/11/02/1-1-memory/" class="archive-article-date">
-  	<time datetime="2020-11-01T16:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+        <a href="/2022/04/08/enhancement/" class="archive-article-date">
+  	<time datetime="2022-04-08T12:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-1字节等于8bit"><a href="#1-1字节等于8bit" class="headerlink" title="1. 1字节等于8bit"></a>1. 1字节等于8bit</h2><p><strong>而内存编址是以字节为单位的</strong><br>我把这句话用作微信的签名，起初是真的对字节比特这些单位都搞不清楚，通过强记这样一个细节对内存编址有了一个初步的认识，而第二点32位CPU都是按4字节处理数据则让当时刚刚入门的我豁然开朗，很多之前不理解的行为都突然理解，千里之行始于足下，打好基础非常重要。</p>
-<h2 id="2-以32位机为例，CPU是以4字节为单位对数据进行处理的"><a href="#2-以32位机为例，CPU是以4字节为单位对数据进行处理的" class="headerlink" title="2. 以32位机为例，CPU是以4字节为单位对数据进行处理的"></a>2. 以32位机为例，CPU是以<strong>4字节</strong>为单位对数据进行处理的</h2><p>字节对齐<br>目的： 提升效率，节省空间<br>内存的对齐访问不是<strong>逻辑</strong>的问题，是<strong>硬件</strong>的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。<br>对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率不高。</p>
-        
+        <h2 id="1-要非常注意指针的初始化及使用"><a href="#1-要非常注意指针的初始化及使用" class="headerlink" title="1. 要非常注意指针的初始化及使用"></a>1. 要非常注意指针的初始化及使用</h2><p>常用方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint32 a;</span><br><span class="line">uint32 *p &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
+<h2 id="2-当出现非常明显的overwrite的时候，要重点排查数组的边界"><a href="#2-当出现非常明显的overwrite的时候，要重点排查数组的边界" class="headerlink" title="2. 当出现非常明显的overwrite的时候，要重点排查数组的边界"></a>2. 当出现非常明显的overwrite的时候，要重点排查数组的边界</h2><h2 id="3-NLO结构体"><a href="#3-NLO结构体" class="headerlink" title="3. NLO结构体"></a>3. NLO结构体</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">  uint8* addr;</span><br><span class="line">  uint16 len;</span><br><span class="line">  uint16 offset;</span><br><span class="line">&#125;cmp_iov_s</span><br><span class="line"></span><br><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line"> cmp_iov_s   iov_arr[30];</span><br><span class="line"> uint16      iov_num;</span><br><span class="line"> uint16      iov_idx;</span><br><span class="line">&#125;cmp_iov_iter_s</span><br><span class="line"></span><br><span class="line">cmp_iov_iter_s    *iov_ptr_temp_s;</span><br><span class="line">cmp_iov_iter_s    *iov_ptr &#x3D; &amp;iov_ptr_temp_s; &#x2F;&#x2F;指针定义及初始化</span><br><span class="line"></span><br><span class="line">for(i &#x3D; 0; i&lt; NLO-&gt;Num_ip_pkts; i++) &#x2F;&#x2F;重复N次，每次跳过offset，取L，得到ip pkt</span><br><span class="line">&#123;</span><br><span class="line">  iov_ptr-&gt;iov_arr[cnt_pkts].addr &#x3D; dsm_addr+(i+1)*(NLO-&gt;offset)+i*(NLO-&gt;length_bytes - pdcp_hdr_size);</span><br><span class="line">  iov_ptr-&gt;iov_arr[cnt_pkts].len  &#x3D; NLO-&gt;length_bytes - pdcp_hdr_size;</span><br><span class="line">  cnt_pkts++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!-- more -->
       
 	  
 
 <!- 文件结束 -->
 
       
-        <div class="essayending" hidden="hidden"></div>
+        <div class="essayending">
+          <div>
+           <div style="text-align:center;color: #ccc;font-size:22px;">
+           <br/>
+           <br/>
+           -------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------
+           <br/>
+           <br/>
+            <br/>
+            <br/>
+           </div>
+          </div>
+        </div>
       
 
       <!- 文件结束 配置完成-->
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢老板加鸡腿<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://s1.ax1x.com/2020/10/19/0zaxZ4.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -208,15 +259,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">heap</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">stack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">bytes alignment</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">pointer</a>
         		</li>
       		
 		</ul>
@@ -228,7 +271,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/foundation//" class="article-tag-list-link color1">foundation</a>
+        			<a href="/categories/work//" class="article-tag-list-link color5">work</a>
         		</li>
       		
 		</ul>
@@ -236,16 +279,75 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/1-1-memory/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2022/04/08/enhancement/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/11/start-from-3gpp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">start from 3gpp</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -260,472 +362,56 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TIPS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/25/TIPS/">Tips of hexo</a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/10/25/TIPS/" class="archive-article-date">
-  	<time datetime="2020-10-25T05:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-移动端无法访问hexo博客的解决方法"><a href="#1-移动端无法访问hexo博客的解决方法" class="headerlink" title="1. 移动端无法访问hexo博客的解决方法"></a>1. 移动端无法访问hexo博客的解决方法</h2><p>WIFI下将手机DNS地址手动改配为 114.114.114.114，一个良心的DNS服务商^_^<br>移动网络还没搞定解决方法，俺的移动的iphone和同事联通的三星都访问不了，但另一个移动的小手机却可以，待解决</p>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Help//" class="article-tag-list-link color5">Help</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/25/TIPS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-要非常注意指针的初始化及使用"><span class="toc-number">1.</span> <span class="toc-text">1. 要非常注意指针的初始化及使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-当出现非常明显的overwrite的时候，要重点排查数组的边界"><span class="toc-number">2.</span> <span class="toc-text">2. 当出现非常明显的overwrite的时候，要重点排查数组的边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-NLO结构体"><span class="toc-number">3.</span> <span class="toc-text">3. NLO结构体</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-interview-round3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+      <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'true' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'DQ3CKUB4nhIuaK4OLTWVvxBG-gzGzoHsz',
+      app_key: 'Ueri59QOnCLXy81FCFLz3bhG',
+      placeholder: '这里留言。。'
+    });
+</script>
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/21/interview-round3/">Interview of foreign companie Q round 3 </a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/10/21/interview-round3/" class="archive-article-date">
-  	<time datetime="2020-10-21T15:17:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="interview-round-3"><a href="#interview-round-3" class="headerlink" title="interview round 3"></a>interview round 3</h2><p><strong>round 3</strong><br><strong>2020-10-21</strong><br><strong>6:30PM - 7:30PM</strong></p>
-<p>After waiting for a whole month, finally I reveived a call from Q and made an appointment for the third round of interview.<br>The whole interview can be divided into four parts:</p>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Interview//" class="article-tag-list-link color5">Interview</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/21/interview-round3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Fail-to-install-package-for-Yilia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/21/Fail-to-install-package-for-Yilia/">Fail to install package for Yilia</a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/10/21/Fail-to-install-package-for-Yilia/" class="archive-article-date">
-  	<time datetime="2020-10-20T17:17:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Why-we-do-this"><a href="#Why-we-do-this" class="headerlink" title="Why we do this"></a>Why we do this</h2><p><strong>After changing the theme to Yilia ,I found that the link to ALL ARTICLES(所有文章) is fail to display like this</strong></p>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Help//" class="article-tag-list-link color5">Help</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/21/Fail-to-install-package-for-Yilia/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-interview-round2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/20/interview-round2/">Interview of foreign companie Q round 2</a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/10/20/interview-round2/" class="archive-article-date">
-  	<time datetime="2020-10-20T15:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="interview-round-2"><a href="#interview-round-2" class="headerlink" title="interview round 2"></a>interview round 2</h2><p><strong>round 2</strong><br><strong>2020-09-23</strong><br><strong>2:20PM - 5:30PM</strong></p>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">heap</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">stack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">context switch</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">task</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Interview//" class="article-tag-list-link color5">Interview</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/20/interview-round2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-The-blog-arranged-on-Github-cannot-be-opened" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/19/The-blog-arranged-on-Github-cannot-be-opened/">The blog site deployed on github cannot be opened</a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2020/10/19/The-blog-arranged-on-Github-cannot-be-opened/" class="archive-article-date">
-  	<time datetime="2020-10-18T17:17:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##主要参考##<br><a href="https://blog.csdn.net/qq_32627137/article/details/108046461" target="_blank" rel="noopener">https://blog.csdn.net/qq_32627137/article/details/108046461</a><br><strong>亲测有效  ^ _ ^</strong><br><strong>现象1：实际部署博客到github上后，github可ping通，可登入</strong><br><strong>现象2：hanshuo929.github.io可ping通，但<a href="https://hanshuo929.github.io" target="_blank" rel="noopener">https://hanshuo929.github.io</a> 却ping不同，报错没有该站点</strong></p>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Help//" class="article-tag-list-link color5">Help</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/19/The-blog-arranged-on-Github-cannot-be-opened/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
   
+
+  
+
+  
+
+  
+
 
 
           </div>
@@ -751,8 +437,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
