@@ -185,11 +185,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="9-回文数"><a href="#9-回文数" class="headerlink" title="9. 回文数"></a>9. 回文数</h2><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。</p>
-<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
-<p>例如，121 是回文，而 123 不是。</p>
-<p>Shuo:<br>无需考虑x &lt; 10<br>需考虑 length - i-1</p>
+        <h2 id="9-回文数"><a href="#9-回文数" class="headerlink" title="9. 回文数"></a>9. 回文数</h2><p>给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。<br>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。<br>例如，121 是回文，而 123 不是。</p>
+<p>** Shuo: **<br>无需考虑x &lt; 10<br>需考虑 length - i-1</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">bool isPalindrome(int x)&#123;</span><br><span class="line">    if(x&lt;0)</span><br><span class="line">    &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int length &#x3D; 1;</span><br><span class="line">    int get_length&#x3D; x;</span><br><span class="line">    while(0!&#x3D; get_length&#x2F;10)</span><br><span class="line">    &#123;</span><br><span class="line">        get_length&#x3D; get_length&#x2F;10;</span><br><span class="line">        length++;</span><br><span class="line">    &#125;</span><br><span class="line">    int arr[100]&#x3D; &#123;0&#125;;</span><br><span class="line">    int i &#x3D; 0;</span><br><span class="line">    for(i &#x3D; 0; i&lt;length ;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        arr[i]&#x3D; x%10;</span><br><span class="line">        x&#x3D; x&#x2F;10;  &#x2F;&#x2F;update x</span><br><span class="line">    &#125;</span><br><span class="line">    int cmp_cnt &#x3D; length&#x2F;2;</span><br><span class="line">    for(i&#x3D;0; i&lt; cmp_cnt ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      if(arr[i]!&#x3D; arr[length-i-1])</span><br><span class="line">      &#123;</span><br><span class="line">          return false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行用时：<br>4 ms<br>, 在所有 C 提交中击败了<br>93.72%<br>的用户<br>内存消耗：<br>5.8 MB<br>, 在所有 C 提交中击败了<br>57.08%<br>的用户<br>通过测试用例：<br>11510 / 11510</p>
+
       
 	  
 
@@ -1216,14 +1217,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pointer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RLC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">heap</a>
               </li>
              
@@ -1236,11 +1229,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">context switch</a>
+                <a href="javascript:void(0)" class="js-tag color3">pointer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">task</a>
+                <a href="javascript:void(0)" class="js-tag color4">RLC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1249,6 +1242,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MAC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">context switch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">task</a>
               </li>
              
               <li class="article-tag-list-item">
