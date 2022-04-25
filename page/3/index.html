@@ -161,6 +161,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1-1-memory" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/02/1-1-memory/">1.1 C foundation - Memory</a>
+    </h1>
+  
+
+		<!--显示阅读次数-->
+        
+        <!--显示阅读次数完毕-->
+
+        
+        <a href="/2020/11/02/1-1-memory/" class="archive-article-date">
+  	<time datetime="2020-11-01T16:15:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-1字节等于8bit"><a href="#1-1字节等于8bit" class="headerlink" title="1. 1字节等于8bit"></a>1. 1字节等于8bit</h2><p><strong>而内存编址是以字节为单位的</strong><br>我把这句话用作微信的签名，起初是真的对字节比特这些单位都搞不清楚，通过强记这样一个细节对内存编址有了一个初步的认识，而第二点32位CPU都是按4字节处理数据则让当时刚刚入门的我豁然开朗，很多之前不理解的行为都突然理解，千里之行始于足下，打好基础非常重要。</p>
+<h2 id="2-以32位机为例，CPU是以4字节为单位对数据进行处理的"><a href="#2-以32位机为例，CPU是以4字节为单位对数据进行处理的" class="headerlink" title="2. 以32位机为例，CPU是以4字节为单位对数据进行处理的"></a>2. 以32位机为例，CPU是以<strong>4字节</strong>为单位对数据进行处理的</h2><p>字节对齐<br>目的： 提升效率，节省空间<br>内存的对齐访问不是<strong>逻辑</strong>的问题，是<strong>硬件</strong>的问题。从硬件角度来说，32位的内存它 0 1 2 3四个单元本身逻辑上就有相关性，这4个字节组合起来当作一个int硬件上就是合适的，效率就高。<br>对齐访问很配合硬件，所以效率很高；非对齐访问因为和硬件本身不搭配，所以效率不高。</p>
+        
+      
+	  
+
+<!- 文件结束 -->
+
+      
+        <div class="essayending" hidden="hidden"></div>
+      
+
+      <!- 文件结束 配置完成-->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">heap</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">stack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">bytes alignment</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/foundation//" class="article-tag-list-link color1">foundation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/02/1-1-memory/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TIPS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

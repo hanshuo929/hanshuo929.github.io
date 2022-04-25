@@ -161,6 +161,115 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20有效的括号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/25/20%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">20有效的括号</a>
+    </h1>
+  
+
+		<!--显示阅读次数-->
+        
+        <!--显示阅读次数完毕-->
+
+        
+        <a href="/2022/04/25/20%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/" class="archive-article-date">
+  	<time datetime="2022-04-25T15:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串 s ，判断字符串是否有效。<br>有效字符串需满足：<br>左括号必须用相同类型的右括号闭合。<br>左括号必须以正确的顺序闭合。</p>
+<p><strong>SHUO</strong><br>方法</p>
+<ol>
+<li>先出现进栈的括号后匹配</li>
+<li>一定成对出现，字符串长度必为偶数</li>
+</ol>
+<ul>
+<li>字符串为空</li>
+<li>括号匹配</li>
+<li>括号不匹配</li>
+</ul>
+<p>时间复杂度 O(n)<br>空间复杂度 O(n)</p>
+<p>{[()]}<br>n = 6<br>stack<br>0 &lt;- top  {<br>1         [<br>2         (<br>3  &lt;- top )<br>4         ]<br>5         }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">char pairs(char ch)</span><br><span class="line">&#123;</span><br><span class="line">    if (ch &#x3D;&#x3D; &#39;)&#39;)  return &#39;(&#39;;</span><br><span class="line">    if (ch &#x3D;&#x3D; &#39;]&#39;)  return &#39;[&#39;;</span><br><span class="line">    if (ch &#x3D;&#x3D; &#39;&#125;&#39;)  return &#39;&#123;&#39;;</span><br><span class="line">    else return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool isValid(char * s)&#123;</span><br><span class="line">   int length &#x3D; strlen(s);</span><br><span class="line">   if(length %2 &#x3D;&#x3D; 1) return false;</span><br><span class="line"></span><br><span class="line">   int stack[length+1];  &#x2F;&#x2F;create a stack, size+1, pointer to the top</span><br><span class="line">   int top &#x3D; 0;</span><br><span class="line"></span><br><span class="line">   for(int i &#x3D; 0; i&lt;length; i++)</span><br><span class="line">   &#123;</span><br><span class="line">       char ch &#x3D; pairs(s[i]);</span><br><span class="line">       if(ch) &#x2F;&#x2F;右括号</span><br><span class="line">       &#123;</span><br><span class="line">           if((top &#x3D;&#x3D;0 )||(stack[top -1] !&#x3D; ch))</span><br><span class="line">           &#123;</span><br><span class="line">               return false;</span><br><span class="line">           &#125;</span><br><span class="line">           top--;</span><br><span class="line">       &#125;</span><br><span class="line">       else&#123;</span><br><span class="line">           stack[top++] &#x3D; s[i];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;  </span><br><span class="line">   return top &#x3D;&#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+	  
+
+<!- 文件结束 -->
+
+      
+        <div class="essayending" hidden="hidden"></div>
+      
+
+      <!- 文件结束 配置完成-->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">stack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/leetcode-medium//" class="article-tag-list-link color1">leetcode-medium</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/25/20%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-8字符串转换整数atoi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1021,105 +1130,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/04/09/leetcode-simple/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-enhancement" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/08/enhancement/">learn from FR UT enhancement</a>
-    </h1>
-  
-
-		<!--显示阅读次数-->
-        
-        <!--显示阅读次数完毕-->
-
-        
-        <a href="/2022/04/08/enhancement/" class="archive-article-date">
-  	<time datetime="2022-04-08T12:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-要非常注意指针的初始化及使用"><a href="#1-要非常注意指针的初始化及使用" class="headerlink" title="1. 要非常注意指针的初始化及使用"></a>1. 要非常注意指针的初始化及使用</h2><p>常用方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint32 a;</span><br><span class="line">uint32 *p &#x3D; &amp;a;</span><br></pre></td></tr></table></figure>
-<h2 id="2-当出现非常明显的overwrite的时候，要重点排查数组的边界"><a href="#2-当出现非常明显的overwrite的时候，要重点排查数组的边界" class="headerlink" title="2. 当出现非常明显的overwrite的时候，要重点排查数组的边界"></a>2. 当出现非常明显的overwrite的时候，要重点排查数组的边界</h2><h2 id="3-NLO结构体"><a href="#3-NLO结构体" class="headerlink" title="3. NLO结构体"></a>3. NLO结构体</h2>
-        
-      
-	  
-
-<!- 文件结束 -->
-
-      
-        <div class="essayending" hidden="hidden"></div>
-      
-
-      <!- 文件结束 配置完成-->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">pointer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/work//" class="article-tag-list-link color5">work</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/08/enhancement/">展开全文 >></a>
         </p>
       
 
