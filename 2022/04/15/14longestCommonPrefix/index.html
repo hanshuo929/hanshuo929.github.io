@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>14longestCommonPrefix | Ham</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。 输入：strs &#x3D; [“flower”,”flow”,”flight”]输出：”fl”">
+  <meta name="description" content="编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。输入：strs &#x3D; [“flower”,”flow”,”flight”]输出：”fl”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="14longestCommonPrefix">
 <meta property="og:url" content="http://yoursite.com/2022/04/15/14longestCommonPrefix/index.html">
 <meta property="og:site_name" content="Ham">
-<meta property="og:description" content="编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。 输入：strs &#x3D; [“flower”,”flow”,”flight”]输出：”fl”">
+<meta property="og:description" content="编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。输入：strs &#x3D; [“flower”,”flow”,”flight”]输出：”fl”">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-15T14:39:51.000Z">
-<meta property="article:modified_time" content="2022-04-15T14:44:03.894Z">
+<meta property="article:modified_time" content="2022-05-29T15:43:51.743Z">
 <meta property="article:author" content="Shuo Han">
 <meta property="article:tag" content="string">
 <meta name="twitter:card" content="summary">
@@ -196,8 +196,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>编写一个函数来查找字符串数组中的最长公共前缀。<br>如果不存在公共前缀，返回空字符串 “”。</p>
-<p>输入：strs = [“flower”,”flow”,”flight”]<br>输出：”fl”</p>
+        <p>编写一个函数来查找字符串数组中的最长公共前缀。<br>如果不存在公共前缀，返回空字符串 “”。<br>输入：strs = [“flower”,”flow”,”flight”]<br>输出：”fl”</p>
 <a id="more"></a>
 <p><strong>SHUO</strong><br>解法使用纵向比较，依次取每一个数组的开头，逐个数组比较，时间复杂度O(mn)<br>也可使用横向比较，先取得最短长度，然后逐个数组找最短长度，时间复杂度相同</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">char * longestCommonPrefix(char ** strs, int strsSize)&#123;</span><br><span class="line">    int min &#x3D; 200;</span><br><span class="line"></span><br><span class="line">    for (int i &#x3D; 0; i &lt; strsSize; i++) &#x2F;&#x2F;get the shortest length</span><br><span class="line">    &#123;</span><br><span class="line">        min &#x3D; min &gt; strlen(strs[i])?  strlen(strs[i]):min;</span><br><span class="line">    &#125;</span><br><span class="line">    if (strlen(strs[0])&gt; min)</span><br><span class="line">    &#123;</span><br><span class="line">        strs[0][min] &#x3D; &#39;\0&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i &#x3D; 0; i&lt;min ; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(int j &#x3D; 0; j&lt;strsSize; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(strs[0][i] !&#x3D; strs[j][i])</span><br><span class="line">            &#123;</span><br><span class="line">                strs[0][i]&#x3D;&#39;\0&#39;;</span><br><span class="line">                return strs[0];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return strs[0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
